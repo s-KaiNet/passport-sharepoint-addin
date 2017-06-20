@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "lib": [
+            "es6",
+            "es2015"
+        ],
+        "types": [
+            "core-js"
+        ],
+        "outDir": "dist",
+        "module": "commonjs",
+        "declaration": true,
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "inlineSources": true,
+        "experimentalDecorators": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
