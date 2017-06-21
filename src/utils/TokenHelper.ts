@@ -9,11 +9,11 @@ import { IAuthData } from '../strategy/IAuthData';
 
 export class TokenHelper {
     public static getUserAccessToken(authData: IAuthData, oauth: IOAuthConfig, url: string): Promise<IAccessToken> {
-        let spAuthority = urlparse(url).host;
-        let resource = `${Consts.SharePointPrincipal}/${spAuthority}@${authData.realm}`;
-        let appId = `${oauth.clientId}@${authData.realm}`;
-        let tokenService = urlparse(authData.securityTokenServiceUri);
-        let tokenUrl = `${tokenService.protocol}//${tokenService.host}/${authData.realm}${tokenService.path}`;
+        const spAuthority = urlparse(url).host;
+        const resource = `${Consts.SharePointPrincipal}/${spAuthority}@${authData.realm}`;
+        const appId = `${oauth.clientId}@${authData.realm}`;
+        const tokenService = urlparse(authData.securityTokenServiceUri);
+        const tokenUrl = `${tokenService.protocol}//${tokenService.host}/${authData.realm}${tokenService.path}`;
 
         return request.post(tokenUrl, {
             form: {
@@ -34,11 +34,11 @@ export class TokenHelper {
     }
 
     public static getAppOnlyAccessToken(authData: IAuthData, oauth: IOAuthConfig, url: string): Promise<IAccessToken> {
-        let spAuthority = urlparse(url).host;
-        let resource = `${Consts.SharePointPrincipal}/${spAuthority}@${authData.realm}`;
-        let appId = `${oauth.clientId}@${authData.realm}`;
-        let tokenService = urlparse(authData.securityTokenServiceUri);
-        let tokenUrl = `${tokenService.protocol}//${tokenService.host}/${authData.realm}${tokenService.path}`;
+        const spAuthority = urlparse(url).host;
+        const resource = `${Consts.SharePointPrincipal}/${spAuthority}@${authData.realm}`;
+        const appId = `${oauth.clientId}@${authData.realm}`;
+        const tokenService = urlparse(authData.securityTokenServiceUri);
+        const tokenUrl = `${tokenService.protocol}//${tokenService.host}/${authData.realm}${tokenService.path}`;
 
         return request.post(tokenUrl, {
             form: {

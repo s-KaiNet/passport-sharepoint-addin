@@ -29,7 +29,7 @@ export abstract class SharePointContext {
     }
 
     protected getUserAccessToken(url: string): Promise<string> {
-        let accessToken = SharePointContext.TokenCache.get(this.getUserCacheKey(url));
+        const accessToken = SharePointContext.TokenCache.get(this.getUserCacheKey(url));
 
         if (!accessToken) {
             return this.createUserAccessToken(url)
@@ -43,7 +43,7 @@ export abstract class SharePointContext {
     }
 
     protected getAppOnlyAccessToken(url: string): Promise<string> {
-        let accessToken = SharePointContext.TokenCache.get(this.getAppOnlyCacheKey(url));
+        const accessToken = SharePointContext.TokenCache.get(this.getAppOnlyCacheKey(url));
 
         if (!accessToken) {
             return this.createAppOnlyAccessToken(url)

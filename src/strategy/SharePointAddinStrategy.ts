@@ -30,29 +30,29 @@ export class SharePointAddinStrategy extends passport.Strategy {
     }
 
     public authenticate(req: Request, options: AuthenticateOptions): void {
-        let path: string = urlparse(this.callbackUrl).path;
+        const path: string = urlparse(this.callbackUrl).path;
         if (req.url.indexOf(path) !== -1) {
             return this.onReturnCallback(req, options);
         }
 
-        let hostUrl = this.ensureTrailingSlash(req.query[Consts.SPHostUrl]);
-        let returnUrl = this.callbackUrl + '?{StandardTokens}';
-        let encodedReturnUrl = encodeURIComponent(returnUrl);
-        let postRedirectUrl: string = `${hostUrl}_layouts/15/AppRedirect.aspx?client_id=${this.oauth.clientId}&redirect_uri=${encodedReturnUrl}`;
+        const hostUrl = this.ensureTrailingSlash(req.query[Consts.SPHostUrl]);
+        const returnUrl = this.callbackUrl + '?{StandardTokens}';
+        const encodedReturnUrl = encodeURIComponent(returnUrl);
+        const postRedirectUrl: string = `${hostUrl}_layouts/15/AppRedirect.aspx?client_id=${this.oauth.clientId}&redirect_uri=${encodedReturnUrl}`;
 
         this.redirect(postRedirectUrl);
     }
 
     private onReturnCallback(req: Request, options: AuthenticateOptions): void {
-        let spAppToken = req.body[Consts.SPAppToken];
+        const spAppToken = req.body[Consts.SPAppToken];
         if (!spAppToken) {
             throw new Error('Unable to find SPAppToken');
         }
 
-        let token = this.verifyAppToken(req, spAppToken);
-        let hostUrl = this.ensureTrailingSlash(req.query[Consts.SPHostUrl]);
-        let appWebUrl = req.query[Consts.SPAppWebUrl] ? this.ensureTrailingSlash(req.query[Consts.SPAppWebUrl]) : null;
-        let authData: IAuthData = {
+        const token = this.verifyAppToken(req, spAppToken);
+        const hostUrl = this.ensureTrailingSlash(req.query[Consts.SPHostUrl]);
+        const appWebUrl = req.query[Consts.SPAppWebUrl] ? this.ensureTrailingSlash(req.query[Consts.SPAppWebUrl]) : null;
+        const authData: IAuthData = {
             spHostUrl: hostUrl,
             spAppWebUrl: appWebUrl,
             realm: token.realm,
@@ -63,7 +63,7 @@ export class SharePointAddinStrategy extends passport.Strategy {
 
         this.getAccessToken(authData, req)
             .then(accessToken => {
-                let headers = {
+                const headers = {
                     'Accept': 'application/json;odata=verbose',
                     'Authorization': 'Bearer ' + accessToken.value
                 };
@@ -73,7 +73,7 @@ export class SharePointAddinStrategy extends passport.Strategy {
                 });
             })
             .then(data => {
-                let profile: ISharePointProfile = {
+                const profile: ISharePointProfile = {
                     username: data.d.LoginName,
                     displayName: data.d.Title,
                     email: data.d.Email,
@@ -88,7 +88,7 @@ export class SharePointAddinStrategy extends passport.Strategy {
     }
 
     private getAccessToken(authData: IAuthData, req: Request): Promise<IAccessToken> {
-        let hostUrl = this.ensureTrailingSlash(req.query[Consts.SPHostUrl]);
+        const hostUrl = this.ensureTrailingSlash(req.query[Consts.SPHostUrl]);
         if (!hostUrl) {
             throw new Error('Unable to find SPHostUrl in query string');
         }
@@ -97,11 +97,11 @@ export class SharePointAddinStrategy extends passport.Strategy {
     }
 
     private verifyAppToken(req: Request, spAppToken: any): IAppToken {
-        let secret = Buffer.from(this.oauth.clientSecret, 'base64');
-        let token = jwt.verify(spAppToken, secret) as IAppToken;
-        let audience = req.get('host');
-        let realm = token.iss.substring(token.iss.indexOf('@') + 1);
-        let validAudience = `${this.oauth.clientId}/${audience}@${realm}`;
+        const secret = Buffer.from(this.oauth.clientSecret, 'base64');
+        const token = jwt.verify(spAppToken, secret) as IAppToken;
+        const audience = req.get('host');
+        const realm = token.iss.substring(token.iss.indexOf('@') + 1);
+        const validAudience = `${this.oauth.clientId}/${audience}@${realm}`;
 
         if (validAudience !== token.aud) {
             throw new Error('SP app token validation failed: invalid audience');

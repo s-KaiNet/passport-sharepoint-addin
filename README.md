@@ -1,0 +1,1 @@
+# Passport.js authentication middleware for SharePoint add-in
