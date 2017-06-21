@@ -11,14 +11,14 @@
             "program": "${workspaceRoot}\\index.js"
         },
         {
-            "name": "Current TS File",
+            "name": "Current TS Tests File",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/node_modules/ts-node/dist/_bin.js",
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "args": [
-                "--project",
-                "src",
-                "./src/index.ts"
+                "-r",
+                "ts-node/register",
+                "${relativeFile}"
             ],
             "cwd": "${workspaceRoot}",
             "protocol": "inspector"

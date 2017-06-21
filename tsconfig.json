@@ -6,7 +6,9 @@
             "es2015"
         ],
         "types": [
-            "core-js"
+            "core-js",
+            "mocha",
+            "chai"
         ],
         "outDir": "dist",
         "module": "commonjs",

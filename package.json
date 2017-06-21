@@ -22,11 +22,30 @@
   "scripts": {
     "tslint": "tslint --project tsconfig.json --type-check",
     "tsc": "tsc -p .",
-    "prepublish": "npm run tslint && rimraf -- dist && npm run tsc"
+    "prepublish": "npm run tslint && rimraf -- dist && npm run tsc",
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/s-KaiNet/passport-sharepoint-addin.git"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "report-dir": "./coverage",
+    "sourceMap": true,
+    "instrument": true
   },
   "dependencies": {
     "@types/bluebird": "^3.5.5",
@@ -44,7 +63,13 @@
     "request-promise": "^4.2.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.0.0",
+    "@types/mocha": "^2.2.41",
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.2",
     "rimraf": "^2.6.1",
+    "source-map-support": "^0.4.15",
     "ts-node": "^3.0.6",
     "tslint": "^5.4.3",
     "tslint-config-standard": "^6.0.1",
