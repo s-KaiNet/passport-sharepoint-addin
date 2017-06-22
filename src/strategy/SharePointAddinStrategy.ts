@@ -74,7 +74,7 @@ export class SharePointAddinStrategy extends passport.Strategy {
             })
             .then(data => {
                 const profile: ISharePointProfile = {
-                    username: data.d.LoginName,
+                    loginName: data.d.LoginName,
                     displayName: data.d.Title,
                     email: data.d.Email,
                     authData: authData

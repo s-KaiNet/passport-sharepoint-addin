@@ -1,7 +1,7 @@
 import { IAuthData } from './IAuthData';
 
 export interface ISharePointProfile {
-    username: string;
+    loginName: string;
     displayName: string;
     email: string;
     authData: IAuthData;

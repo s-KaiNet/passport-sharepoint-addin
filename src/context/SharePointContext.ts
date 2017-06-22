@@ -21,11 +21,11 @@ export abstract class SharePointContext {
     }
 
     public getAppOnlyAccessTokenForSPHost(): Promise<string> {
-        return this.getUserAccessToken(this.authData.spHostUrl);
+        return this.getAppOnlyAccessToken(this.authData.spHostUrl);
     }
 
     public getAppOnlyAccessTokenForSPAppWeeb(): Promise<string> {
-        return this.getUserAccessToken(this.authData.spAppWebUrl);
+        return this.getAppOnlyAccessToken(this.authData.spAppWebUrl);
     }
 
     protected getUserAccessToken(url: string): Promise<string> {
