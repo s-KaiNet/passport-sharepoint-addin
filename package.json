@@ -1,6 +1,6 @@
 {
   "name": "passport-sharepoint-addin",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "author": "Sergei Sergeev <sergeev.srg@gmail.com>",
   "description": "Passport.js authentication middleware for SharePoint add-in",
   "main": "./dist/index.js",
