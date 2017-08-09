@@ -1,5 +1,7 @@
 # Passport.js authentication middleware for SharePoint add-in
 
+### Need help on SharePoint with Node.JS? Join our gitter chat and ask question! [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/sharepoint-node/Lobby)
+
 [Passport.js](http://passportjs.org) authentication strategy for SharePoint Online and SharePoint on-premise performing authentication via ACS.   
 
 This module allows you to perform SharePoint add-in authentication for your Node.js [Express](https://expressjs.com/) web application. Can be also integrated into other connect-based frameworks. 
